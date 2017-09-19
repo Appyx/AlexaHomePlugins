@@ -1,0 +1,13 @@
+.DS_Store
+
+.gradle/
+gradle/
+build/
+out/
+
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
