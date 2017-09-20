@@ -6,31 +6,46 @@ import at.rgstoettner.alexahome.plugin.v2.OnOff;
 import at.rgstoettner.alexahome.plugin.v2.Percentage;
 import at.rgstoettner.alexahome.plugin.v2.Temperature;
 
+
+/**
+ * This class implements all interfaces. So it is the most powerful device.<br>
+ * The fully qualified name is registered in the file META-INF/services/at.rgstoettner.alexahome.plugin.v2.DeviceV2
+ */
 public class ReallyBigTestDevice implements Lighting, LockState, OnOff, Percentage, Temperature {
 
+    //You can add as many fields as you want.
+    private Lighting.Color mColor = new Color();
 
-    public static void main(String[] args) {
-        ReallyBigTestDevice test = new ReallyBigTestDevice();
-        Lighting.Color color = new Lighting.Color();
-        color.saturation = 0.5;
-        color.brightness = 0.5;
-        color.hue = 180;
-        test.setColor(color);
+    public ReallyBigTestDevice() {
+        //The constructor is called when the plugin is loaded.
+        //The plugin is also loaded at each discovery process.
+        //So the constructor is the right place to initialize the device.
+        mColor.saturation = 0.5;
+        mColor.brightness = 0.5;
+        mColor.hue = 180;
     }
 
-    @Override
-    public String getAlias() {
-        return null;
+    //You can also add as many methods as you want
+    public static void main(String[] args) {
+        //You could use this method to test your plugin without compiling a jar.
+        //For example:
+        //ReallyBigTestDevice test = new ReallyBigTestDevice();
+        //test.setColorTemperature(1000)
     }
 
     @Override
     public String getName() {
-        return "Really Big Test Device";
+        return "Computer";
     }
 
     @Override
-    public String getType() {
-        return "SWITCH";
+    public boolean isScene() {
+        return true;
+    }
+
+    @Override
+    public boolean isError() {
+        return false;
     }
 
     @Override
@@ -55,7 +70,7 @@ public class ReallyBigTestDevice implements Lighting, LockState, OnOff, Percenta
 
     @Override
     public Color setColor(Color color) {
-        return null;
+        return mColor;
     }
 
     @Override
@@ -74,12 +89,12 @@ public class ReallyBigTestDevice implements Lighting, LockState, OnOff, Percenta
     }
 
     @Override
-    public void decrementPercentage(int delta) {
+    public void decrementPercentage(double delta) {
 
     }
 
     @Override
-    public void incrementPercentage(int delta) {
+    public void incrementPercentage(double delta) {
 
     }
 
@@ -89,13 +104,13 @@ public class ReallyBigTestDevice implements Lighting, LockState, OnOff, Percenta
     }
 
     @Override
-    public String getLockState() {
-        return null;
+    public LockState.Value getLockState() {
+        return LockState.Value.LOCKED;
     }
 
     @Override
-    public String setLockState(String lockState) {
-        return null;
+    public LockState.Value setLockState(LockState.Value lockState) {
+        return LockState.Value.UNLOCKED;
     }
 
     @Override
@@ -109,22 +124,40 @@ public class ReallyBigTestDevice implements Lighting, LockState, OnOff, Percenta
     }
 
     @Override
-    public Reading getTemperatureReading() {
-        return null;
-    }
-
-    @Override
     public StateInfo setTargetTemperature(float value) {
-        return null;
+        //This setup is necessary for Alexa to know what's going on.
+        //It is already a simplified version of the AmazonApi
+        StateInfo info = new StateInfo();
+        info.actual = new StateInfo.State();
+        info.previous = new StateInfo.State();
+        info.actual.temp = value;
+        info.actual.mode = StateInfo.Mode.AUTO;
+        info.previous.temp = value - 10;
+        info.previous.mode = StateInfo.Mode.AUTO;
+        return info;
     }
 
     @Override
-    public StateInfo incrementTargetTemperature() {
-        return null;
+    public StateInfo incrementTargetTemperature(float delta) {
+        StateInfo info = new StateInfo();
+        info.actual = new StateInfo.State();
+        info.previous = new StateInfo.State();
+        info.previous.temp = info.actual.temp;
+        info.previous.mode = info.actual.mode;
+        info.actual.temp = 20.0f;
+        info.actual.mode = StateInfo.Mode.AUTO;
+        return info;
     }
 
     @Override
-    public StateInfo decrementTargetTemperature() {
-        return null;
+    public StateInfo decrementTargetTemperature(float delta) {
+        StateInfo info = new StateInfo();
+        info.actual = new StateInfo.State();
+        info.previous = new StateInfo.State();
+        info.previous.temp = info.actual.temp;
+        info.previous.mode = info.actual.mode;
+        info.actual.temp = 20.0f;
+        info.actual.mode = StateInfo.Mode.AUTO;
+        return info;
     }
 }
