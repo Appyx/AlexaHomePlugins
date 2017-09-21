@@ -1,8 +1,8 @@
 package com.example.your.plugin;
 
 
-import at.rgstoettner.alexahome.plugin.v2.DeviceV2Adapter;
 import at.rgstoettner.alexahome.plugin.v2.OnOff;
+import at.rgstoettner.alexahome.plugin.v2.V2DeviceAdapter;
 
 
 /**
@@ -10,9 +10,9 @@ import at.rgstoettner.alexahome.plugin.v2.OnOff;
  * It extends from the DeviceV2Adapter because we don't want to implement all methods.<br>
  * So the adapter takes care of the unimportant implementation.<br>
  * <p>
- * The fully qualified name is registered in the file META-INF/services/at.rgstoettner.alexahome.plugin.v2.DeviceV2
+ * The fully qualified name is registered in the file META-INF/services/at.rgstoettner.alexahome.plugin.v2.V2Device
  */
-public class SimpleTestDevice extends DeviceV2Adapter implements OnOff {
+public class SimpleTestDevice extends V2DeviceAdapter implements OnOff {
 
 
     public static void main(String[] args) {

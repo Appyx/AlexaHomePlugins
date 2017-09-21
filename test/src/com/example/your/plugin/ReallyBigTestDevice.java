@@ -9,7 +9,7 @@ import at.rgstoettner.alexahome.plugin.v2.Temperature;
 
 /**
  * This class implements all interfaces. So it is the most powerful device.<br>
- * The fully qualified name is registered in the file META-INF/services/at.rgstoettner.alexahome.plugin.v2.DeviceV2
+ * The fully qualified name is registered in the file META-INF/services/at.rgstoettner.alexahome.plugin.v2.V2Device
  */
 public class ReallyBigTestDevice implements Lighting, LockState, OnOff, Percentage, Temperature {
 
