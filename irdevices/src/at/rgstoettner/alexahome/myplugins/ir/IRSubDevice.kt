@@ -12,13 +12,16 @@ import java.io.File
 class IRSubDevice(private val internalName: String,
                   private val signal: String) : V2DeviceAdapter(), OnOff {
 
-    override fun turnOn() {
-        File("/dev/gpio-reflect").writeText(signal)
-        println("irsend $internalName")
-    }
+    override fun turnOn() = action()
 
-    override fun turnOff() {
-        File("/dev/gpio-reflect").writeText(signal)
+    override fun turnOff() = action()
+
+    private fun action() {
+        object : Thread() {
+            override fun run() {
+                File("/dev/gpio-reflect").writeText(signal)
+            }
+        }.start()
         println("irsend $internalName")
     }
 
