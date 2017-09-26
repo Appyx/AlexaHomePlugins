@@ -29,28 +29,32 @@ class TV : V2DeviceAdapter(), OnOff, Percentage {
 
     override fun turnOn() {
         File("/dev/gpio-reflect").writeText(power)
-        println("irsend TV on")
     }
 
     override fun turnOff() {
         File("/dev/gpio-reflect").writeText(power)
-        println("irsend TV off")
     }
 
     override fun decrementPercentage(delta: Double) {
-        val range = Math.round(delta)
-        for (i in 1..range) {
-            File("/dev/gpio-reflect").writeText(volDown)
-        }
-        println("irsend TV to $range percent")
+        object : Thread() {
+            override fun run() {
+                val range = Math.round(delta)
+                for (i in 1..range) {
+                    File("/dev/gpio-reflect").writeText(volDown)
+                }
+            }
+        }.start()
     }
 
     override fun incrementPercentage(delta: Double) {
-        val range = Math.round(delta)
-        for (i in 1..range) {
-            File("/dev/gpio-reflect").writeText(volUp)
-        }
-        println("irsend TV to $range percent")
+        object : Thread() {
+            override fun run() {
+                val range = Math.round(delta)
+                for (i in 1..range) {
+                    File("/dev/gpio-reflect").writeText(volUp)
+                }
+            }
+        }.start()
     }
 
     override fun setPercentage(value: Double) {

@@ -22,10 +22,8 @@ class IRSubDevice(private val internalName: String,
                 File("/dev/gpio-reflect").writeText(signal)
             }
         }.start()
-        println("irsend $internalName")
     }
 
     override fun getName() = internalName
     override fun getDescription() = "gpio-reflect sub-device"
-
 }

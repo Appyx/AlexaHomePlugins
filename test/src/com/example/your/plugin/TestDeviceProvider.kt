@@ -12,7 +12,7 @@ import at.rgstoettner.alexahome.plugin.v2.V2DeviceProvider
  * This is important when the number of devices is depending on something and you don't want to create a class for each device.
  *
  *
- * For example: You want to create a device which configures other devices depending on a configuration file.
+ * For example: You want to create a device which configures ir devices depending on a configuration file.
  * You could read a file and create a new device for each line in the file.
  * All these devices could share the same class blueprint.
  *
