@@ -1,0 +1,3 @@
+com.example.devices.hifi.DenonKeyProvider
+com.example.devices.outlets.PowerOutletProvider
+com.example.devices.tv.TVChannelProvider
