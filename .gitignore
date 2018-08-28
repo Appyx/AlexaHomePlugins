@@ -3,7 +3,6 @@
 .gradle/
 gradle/
 build/
-out/
 
 # User-specific stuff:
 .idea/workspace.xml
@@ -12,5 +11,4 @@ out/
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 
-MANIFEST.MF
-.idea/artifacts
+
