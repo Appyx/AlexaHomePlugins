@@ -1,3 +1,4 @@
-com.example.devices.hifi.DenonKeyProvider
-com.example.devices.outlets.PowerOutletProvider
-com.example.devices.tv.TVChannelProvider
+com.example.devices.controller.HifiController
+com.example.devices.controller.PlaystationController
+com.example.devices.controller.OutletController
+com.example.devices.controller.TVController

@@ -1,2 +1,1 @@
-com.example.devices.tv.TVDevice
-com.example.devices.light.ColorLightDevice
+com.example.devices.controller.RainbowLedController
