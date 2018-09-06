@@ -10,6 +10,7 @@ import com.example.devices.BasicCLIDevice
 class CommandController : V2DeviceProvider {
 
     override fun getDevices(): MutableList<V2Device> {
-        return mutableListOf(BasicCLIDevice("Plex", "/opt/nodejs/bin/ps4-waker start CUSA01703"))
+        return mutableListOf(BasicCLIDevice("Finder", "open -a finder"),
+                             BasicCLIDevice("PC", "pmset sleepnow"))
     }
 }

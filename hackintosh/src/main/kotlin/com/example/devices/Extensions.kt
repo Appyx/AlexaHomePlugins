@@ -1,6 +1,5 @@
 package com.example.devices
 
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -18,25 +17,9 @@ fun String.runCommand(output: Boolean = true) {
     }
 }
 
-fun String.sendIR() {
-    object : Thread() {
-        override fun run() {
-            File("/dev/gpio-reflect").writeText(this@sendIR)
-        }
-    }.start()
-}
-
-fun String.log(title: String):String {
+fun String.log(title: String): String {
     println(title + ": " + this)
     return this
-}
-
-fun String.sendRF() {
-    object : Thread() {
-        override fun run() {
-            "./rf/rfsend ${this@sendRF}".runCommand(true)
-        }
-    }.start()
 }
 
 fun String.runCommandAsync(output: Boolean = true) {
